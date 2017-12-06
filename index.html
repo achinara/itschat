@@ -6,13 +6,13 @@
 	<link rel="stylesheet" href="styles.css">
 </head>
 	<body>
-		<div class="chat">
-			<div class="chat-header">
-				<h1>чат</h1>
-			</div>
-			<div class="chat-history">
+		<div class="js-app"></div>
+		<script type="module">
+			import { App } from "./components/App.js";
 
-			</div>
-		</div>
+			new App({
+				el: document.querySelector('.js-app')
+			});
+		</script>
 	</body>
 </html>
