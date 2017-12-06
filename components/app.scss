@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700&subset=cyrillic');
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background: #C5DDEB;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.chat {
+    width: 35%; //calc(100vw - 60%);
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.3);
+
+    @media (max-width: 1000px) {
+        width: 350px;
+    }
+}
+
+.chat-header {
+    background: #42A7A1;
+    padding: 10px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    text-align: center;
+
+    h1 {
+        color: #fff;
+        margin: 0;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 19px;
+    }
+}
+
+.chat-history {
+    height: 550px;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+// scroll
+// Let's get this party started
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+// Track
+::-webkit-scrollbar-track {
+    border-radius: 0;
+    box-shadow: inset 0 0 1px rgba(0, 0, 0, .3);
+}
+
+// Handle
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, .2);
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(0, 0, 0, .3);
+}
