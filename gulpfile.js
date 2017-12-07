@@ -15,15 +15,8 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('./'));
 });
 
-gulp.task("babel", function () {
-    return gulp.src(jsFiles)
-        .pipe(babel())
-        .pipe(gulp.dest("compiled"));
-});
-
 gulp.task('watcher', function() {
     gulp.watch(pathStylesFiles, ['sass']);
-    gulp.watch(jsFiles, ['babel']);
 });
 
 // Default Task
