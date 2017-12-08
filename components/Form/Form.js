@@ -1,40 +1,41 @@
 export class Form {
-    constructor({el, onSubmit}) {
+    constructor({el, onSubmit, getTime}) {
         this.el = el;
         this.el.classList.add('chat-form');
         this.render();
+        this.field = this.el.querySelector('textarea');
 
-        this.el.addEventListener('submit', this._onSubmit.bind(this));
         this.onSubmit = onSubmit;
-    }
+        this.getTime = getTime;
+        this.el.addEventListener('submit', this._onSubmit.bind(this));
+        this.el.addEventListener('keydown', this.handlerKeyDown.bind(this));
 
-    timeFormat(val){
-        return val < 10 ? '0' + val : val;
-    }
-
-    //Форматирование времени
-    getTime() {
-        const date= new Date();
-        const hour = date.toLocaleString('ru-RU', {
-            hour: '2-digit',
-            timeZone: 'Europe/Moscow'
-        });
-        return `${this.timeFormat(hour)} 
-                : ${this.timeFormat(date.getMinutes())} 
-                : ${this.timeFormat(date.getSeconds())}` ;
     }
 
     _onSubmit(e) {
         e.preventDefault();
-        const textarea = e.target.querySelector('textarea');
+        const textarea = this.field;
+        const value = textarea.value;
+
+        if (!value) return;
+        textarea.value = '';
 
         this.onSubmit(
             {
                 sender: 'You',
-                text: textarea.value,
+                text: value,
                 timestamp: this.getTime()
             }
         )
+    }
+
+    handlerKeyDown(e) {
+        const keyCode = e.keyCode;
+        const enterCode = 13;
+
+        if (keyCode == enterCode) {
+            this._onSubmit(e);
+        }
     }
 
     render() {

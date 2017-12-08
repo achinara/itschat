@@ -1,8 +1,7 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
     concat = require('gulp-concat'),
-    autoprefixer = require('gulp-autoprefixer'),
-    babel = require("gulp-babel");
+    autoprefixer = require('gulp-autoprefixer');
 
 var pathStylesFiles = ['components/app.scss', 'components/**/*.scss'],
     jsFiles = ['components/App.js', 'components/**/*.js'];
@@ -20,4 +19,4 @@ gulp.task('watcher', function() {
 });
 
 // Default Task
-gulp.task('default', ['watcher', 'sass', 'babel']);
+gulp.task('default', ['watcher', 'sass']);

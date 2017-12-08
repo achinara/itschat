@@ -5,7 +5,7 @@ export class App {
     constructor({el}) {
         this.el = el;
 
-        //Элемент chat.все будет делаться внутри него
+        //Элемент chat, все будет делаться внутри него
         this.chat = document.createElement('div');
         this.chat.classList.add('chat');
         this.chat.innerHTML = `
@@ -19,13 +19,19 @@ export class App {
             {
                 sender: 'Learn.javascript.ru',
                 text: 'Эта часть позволит вам изучить JavaScript с нуля или упорядочить и дополнить существующие знания',
-                timestamp: '15.20'
+                timestamp: this.getTime()
             },
+            {
+                sender: 'Студент',
+                text: 'Окайййй!',
+                timestamp: this.getTime()
+            }
         ];
 
         this.form = new Form({
             el: document.createElement('form'),
-            onSubmit: this._onSubmit.bind(this)
+            onSubmit: this._onSubmit.bind(this),
+            getTime: this.getTime.bind(this)
         });
 
         this.messages = new Messages({
@@ -34,12 +40,23 @@ export class App {
         });
 
         this.chat.append(this.messages.el, this.form.el);
+    }
 
+    formatTime(val) {
+        return val < 10 ? '0' + val : val;
+    }
+
+    getTime() {
+        const date = new Date();
+        const hour = date.toLocaleString('ru-RU', {
+            hour: '2-digit',
+            timeZone: 'Europe/Moscow'
+        });
+        return `${this.formatTime(hour)}:${this.formatTime(date.getMinutes())}`;
     }
 
     _onSubmit(data) {
         this.data.push(data);
-        console.log(this.messages.ul);
         this.messages.render();
     }
 

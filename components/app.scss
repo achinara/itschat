@@ -7,7 +7,7 @@
 body {
     margin: 0;
     padding: 20px;
-    background: #C5DDEB;
+    background: #f9fbfd;
     font-family: 'Noto Sans', sans-serif;
 }
 
@@ -16,7 +16,7 @@ body {
     margin: 0 auto;
     background: #fff;
     border-radius: 5px;
-    box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
 
     @media (max-width: 1000px) {
         width: 350px;
