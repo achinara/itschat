@@ -7,19 +7,31 @@ export class Messages {
 
         this.el.append(this.ul);
         this.data = data;
-        this.render();
     }
 
-    renderItems(items) {
+    getItems(items) {
         return items.map(item => {
-            return this.getTemplateItem(item.sender, item.timestamp, item.text)
+            return this.getItem(true, item.sender, item.time, item.text)
         }).join('');
     }
 
-    getTemplateItem(name, time, text) {
+    getItem(isString, name, time, text) {
+        const cls = name == 'Me' ? 'item __my' : 'item __other';
+        const imgName = name == 'Me' ? 'eve' : 'lena';
+
+        if (isString) {
+            return `<li class="${cls}">${this.getTemplateInnerItem(name, imgName, text, time)}</li>`;
+        } else {
+            const li = document.createElement('li');
+            li.className = cls;
+            li.innerHTML = this.getTemplateInnerItem(name, imgName, text, time);
+            return li;
+        }
+    }
+
+    getTemplateInnerItem(name, imgName, text, time) {
         return `
-            <li class="item __other">
-                <img src="https://semantic-ui.com/images/avatar2/small/lena.png" alt="" />
+             <img src="https://semantic-ui.com/images/avatar2/small/${imgName}.png" alt="" />
                 <div class="message">
                     <span class="message__user-name">${name}</span>
                     <time class="message__time">
@@ -27,11 +39,14 @@ export class Messages {
                         ${time}
                     </time>
                     <p class="message__text">${text}</p>
-                </div>
-            </li>`;
+                </div>`;
+    }
+
+    renderOneMsg({sender:name, time, text}) {
+         this.ul.append(this.getItem(false, name, time, text));
     }
 
     render() {
-        this.ul.innerHTML = this.renderItems(this.data);
+        this.ul.innerHTML = this.getItems(this.data);
     }
 }

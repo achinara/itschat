@@ -19,12 +19,12 @@ export class App {
             {
                 sender: 'Learn.javascript.ru',
                 text: 'Эта часть позволит вам изучить JavaScript с нуля или упорядочить и дополнить существующие знания',
-                timestamp: this.getTime()
+                time: this.getTime()
             },
             {
                 sender: 'Студент',
                 text: 'Окайййй!',
-                timestamp: this.getTime()
+                time: this.getTime()
             }
         ];
 
@@ -40,6 +40,8 @@ export class App {
         });
 
         this.chat.append(this.messages.el, this.form.el);
+
+        this.render();
     }
 
     formatTime(val) {
@@ -57,9 +59,11 @@ export class App {
 
     _onSubmit(data) {
         this.data.push(data);
-        this.messages.render();
+        this.messages.renderOneMsg(data);
     }
 
     render() {
+        this.messages.render();
+        this.form.render();
     }
 }

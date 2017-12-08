@@ -34,7 +34,7 @@ body {
     font-size: 19px; }
 
 .chat-history {
-  height: 550px;
+  height: 450px;
   overflow-y: auto;
   padding: 20px; }
 

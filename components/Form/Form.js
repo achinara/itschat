@@ -2,19 +2,16 @@ export class Form {
     constructor({el, onSubmit, getTime}) {
         this.el = el;
         this.el.classList.add('chat-form');
-        this.render();
-        this.field = this.el.querySelector('textarea');
 
         this.onSubmit = onSubmit;
         this.getTime = getTime;
         this.el.addEventListener('submit', this._onSubmit.bind(this));
         this.el.addEventListener('keydown', this.handlerKeyDown.bind(this));
-
     }
 
     _onSubmit(e) {
         e.preventDefault();
-        const textarea = this.field;
+        const textarea = this.el.querySelector('textarea');
         const value = textarea.value;
 
         if (!value) return;
@@ -22,9 +19,9 @@ export class Form {
 
         this.onSubmit(
             {
-                sender: 'You',
+                sender: 'Me',
                 text: value,
-                timestamp: this.getTime()
+                time: this.getTime()
             }
         )
     }

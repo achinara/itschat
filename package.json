@@ -2,7 +2,6 @@
   "name": "itschat",
   "version": "1.0.0",
   "description": "",
-  "main": "gulpfile.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint components/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/achinara/itschat/issues"
   },
-  "homepage": "https://github.com/achinara/itschat/",
+  "homepage": "https://achinara.github.io/itschat/",
   "devDependencies": {
     "eslint": "^4.12.1",
     "gulp": "^3.9.1",
